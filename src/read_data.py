@@ -1,7 +1,9 @@
+import glob
+from os import path
+
 import numpy as np
 import pandas as pd
-import glob
-from os import listdir, path
+
 from models.keel_data import KeelData
 
 
@@ -15,15 +17,12 @@ class DataReader:
         data_file = data_file.rename(columns={data_file.columns[len(list(data_file)) - 1]: 'Class'})
         mapping = {'positive': 1, 'negative': 0}
         data_file = data_file.replace({'Class': mapping}, regex=True)
-        data_file_positive = data_file[data_file['Class'] == 0]
-        data_file_negative = data_file[data_file['Class'] == 1]
         xy = data_file.values.astype(np.float32)
         y = xy[:, xy.shape[1] - 1]
         x = np.delete(xy, xy.shape[1] - 1, axis=1)
         rows = len(data_file)
         features = (len(list(data_file)) - 1)
-        imbalance_ratio = float(len(data_file_positive)) / float(len(data_file_negative))
-        return KeelData(file_name, rows, features, imbalance_ratio, x, y, xy)
+        return KeelData(file_name, rows, features, x, y)
 
     def read_keel_dat_directory(self):
         return list(self.keel_dat_file_dir_generator())
