@@ -2,11 +2,11 @@ import src.plot as plot
 
 
 class TestableKeelData:
-    def __init__(self, file_name, size, features, test_train_split_ratio, x_train, x_test, y_train, y_test):
+    def __init__(self, file_name, size, features, classes, test_train_split_ratio, x_train, x_test, y_train, y_test):
         self.file_name = file_name
         self.size = size
         self.features = features
-        self.classes = 2
+        self.classes = classes
         self.test_train_split_ratio = test_train_split_ratio
         self.x_train = x_train
         self.x_test = x_test
@@ -32,4 +32,4 @@ class TestableKeelData:
         print('==> Test Size: %s' % len(self.x_test))
 
     def plot_train_class_distribution(self):
-        plot.plot_2d_space(self.x_train, self.y_train, label="Train set class distribution")
+        plot.plot_2d_space(self.x_train, self.y_train, title="Train set class distribution")

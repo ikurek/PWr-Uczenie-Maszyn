@@ -14,6 +14,7 @@ keel_data = data_reader.read_keel_dat_directory()
 random_keel_data = random.choice(keel_data)
 print("Random:")
 random_keel_data.print_info()
+random_keel_data.plot_class_distribution()
 
 random_testable_keel_data = random_keel_data.as_testable()
 print("Testable:")

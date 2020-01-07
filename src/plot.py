@@ -1,16 +1,19 @@
+import random
+
 import numpy as np
 from matplotlib import pyplot as plt
 
 
-def plot_2d_space(X, y, label='Classes'):
-    colors = ['#1F77B4', '#FF7F0E']
-    markers = ['o', 's']
-    for l, c, m in zip(np.unique(y), colors, markers):
+def plot_2d_space(X, y, title='Classes'):
+    markers = ['o', 's', 'v', '^', '<', '>', '8', 'P', 'p', 'h', '+', 'x']
+    for label in np.unique(y):
+        color = "#%06x" % random.randint(0, 0xFFFFFF)
+        marker = random.choice(markers)
         plt.scatter(
-            X[y == l, 0],
-            X[y == l, 1],
-            c=c, label=l, marker=m
+            X[y == label, 0],
+            X[y == label, 1],
+            c=color, label=label, marker=marker
         )
-    plt.title(label)
+    plt.title(title)
     plt.legend(loc='upper right')
     plt.show()

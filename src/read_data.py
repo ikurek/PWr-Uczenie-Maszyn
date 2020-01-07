@@ -15,14 +15,13 @@ class DataReader:
         file_path = self.data_dir + "/" + file_name
         data_file = pd.read_csv(file_path, skiprows=skip, header=None)
         data_file = data_file.rename(columns={data_file.columns[len(list(data_file)) - 1]: 'Class'})
-        mapping = {'positive': 1, 'negative': 0}
-        data_file = data_file.replace({'Class': mapping}, regex=True)
-        xy = data_file.values.astype(np.float32)
+        xy = data_file.values
         y = xy[:, xy.shape[1] - 1]
         x = np.delete(xy, xy.shape[1] - 1, axis=1)
         rows = len(data_file)
         features = (len(list(data_file)) - 1)
-        return KeelData(file_name, rows, features, x, y)
+        classes = len(np.unique(y))
+        return KeelData(file_name, rows, features, classes, x, y)
 
     def read_keel_dat_directory(self):
         return list(self.keel_dat_file_dir_generator())
