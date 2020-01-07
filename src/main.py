@@ -1,5 +1,3 @@
-import random
-
 from src.classification import CommonClassification
 from src.preprocessing import CommonPreprocessing
 from src.read_data import DataReader
@@ -9,14 +7,12 @@ data_reader = DataReader(DATA_DIR)
 common_classifier = CommonClassification()
 common_preprocessing = CommonPreprocessing()
 
-keel_data = data_reader.read_keel_dat_directory()
+keel_data = data_reader.read_keel_dat_file("glass.dat")
+print("Data:")
+keel_data.print_info()
+keel_data.plot_class_distribution()
 
-random_keel_data = random.choice(keel_data)
-print("Random:")
-random_keel_data.print_info()
-random_keel_data.plot_class_distribution()
-
-random_testable_keel_data = random_keel_data.as_testable()
+random_testable_keel_data = keel_data.as_testable()
 print("Testable:")
 random_testable_keel_data.print_info()
 

@@ -1,4 +1,4 @@
-import src.plot as plot
+from src.plot import Plotter
 
 
 class TestableKeelData:
@@ -12,6 +12,7 @@ class TestableKeelData:
         self.x_test = x_test
         self.y_train = y_train
         self.y_test = y_test
+        self.plotter = Plotter(classes)
 
     def update_with_datasets(self, x_train, x_test, y_train, y_test):
         self.x_train = x_train
@@ -32,4 +33,4 @@ class TestableKeelData:
         print('==> Test Size: %s' % len(self.x_test))
 
     def plot_train_class_distribution(self):
-        plot.plot_2d_space(self.x_train, self.y_train, title="Train set class distribution")
+        self.plotter.plot_2d_space(self.x_train, self.y_train, title="Train set class distribution")
