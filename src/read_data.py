@@ -18,6 +18,8 @@ class DataReader:
         data_file = data_file.rename(columns={data_file.columns[len(list(data_file)) - 1]: 'Class'})
         xy = data_file.values
         y = (xy[:, xy.shape[1] - 1]).astype(np.str)
+        for idx, entry in enumerate(y):
+            y[idx] = entry.strip()  # Trim whitespaces
         x = np.delete(xy, xy.shape[1] - 1, axis=1).astype(np.float32)
         rows = len(data_file)
         features = (len(list(data_file)) - 1)
