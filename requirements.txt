@@ -6,3 +6,4 @@ numpy
 jupyter
 IPython
 imblearn
+seaborn

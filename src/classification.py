@@ -23,9 +23,9 @@ class CommonClassification:
 
     def __get_metrics(self, file_name, size, classes, y_true, y_predicted):
         accuracy = metrics.accuracy_score(y_true, y_predicted)
-        confusion_matrix = metrics.confusion_matrix(y_true, y_predicted)
+        labels = np.unique(y_true)
+        confusion_matrix = metrics.confusion_matrix(y_true, y_predicted, labels)
         if classes > 2:
-            labels = np.unique(y_true)
             average = 'micro'
             f1 = metrics.f1_score(y_true, y_predicted, labels=labels, average=average)
             recall = metrics.recall_score(y_true, y_predicted, labels=labels, average=average)
@@ -35,7 +35,8 @@ class CommonClassification:
             f1 = metrics.f1_score(y_true, y_predicted, pos_label=positive_label)
             recall = metrics.recall_score(y_true, y_predicted, pos_label=positive_label)
             precision = metrics.precision_score(y_true, y_predicted, pos_label=positive_label)
-        return ClassificationStatistics(file_name, size, accuracy, precision, confusion_matrix, f1, recall)
+        return ClassificationStatistics(file_name, size, classes, labels, accuracy, precision, confusion_matrix, f1,
+                                        recall)
 
     def naive_bayes_gaussian_classification(self, testable_keel_dataset: TestableKeelData):
         naive_bayes_gaussian_classifier = GaussianNB()

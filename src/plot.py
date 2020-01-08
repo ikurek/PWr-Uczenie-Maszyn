@@ -1,6 +1,8 @@
 import random
 
 import numpy as np
+import pandas as pd
+import seaborn as sn
 from matplotlib import pyplot as plt
 
 
@@ -32,4 +34,10 @@ class Plotter:
             )
         plt.title(title)
         plt.legend(loc='upper right')
+        plt.show()
+
+    def plot_confusion_matrix(self, confusion_matrix, classes):
+        df_cm = pd.DataFrame(confusion_matrix, classes, classes)
+        sn.set(font_scale=1.4)  # for label size
+        sn.heatmap(df_cm, annot=True, annot_kws={"size": 12})  # font size
         plt.show()
