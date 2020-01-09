@@ -20,3 +20,4 @@ random_testable_keel_data.plot_train_class_distribution()
 
 classification_result = common_classifier.naive_bayes_gaussian_classification(random_testable_keel_data)
 classification_result.print_info()
+classification_result.plot_confusion_matrix()
