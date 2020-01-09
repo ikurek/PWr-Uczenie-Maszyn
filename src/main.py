@@ -11,6 +11,7 @@ common_preprocessing = CommonPreprocessing()
 
 all_keel_data = data_reader.read_keel_dat_directory()
 keel_data = random.choice(all_keel_data)
+#keel_data = data_reader.read_keel_dat_file("winequality-white-3_vs_7.dat")
 
 random_testable_keel_data = keel_data.as_testable()
 print("Testable:")
