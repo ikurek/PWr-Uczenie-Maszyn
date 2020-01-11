@@ -21,15 +21,13 @@ class KeelData:
         print('==> Features: %s' % self.features)
         print('==> Classes: %s' % self.classes)
 
-    def plot_class_distribution(self):
-        self.plotter.plot_2d_space(self.x, self.y, title="Dataset class distribution")
+    def plot_class_distribution(self, filename):
+        self.plotter.plot_2d_space(self.x, self.y, title="Dataset class distribution", filename=filename)
 
-    def as_testable(self, test_size=0.25, random_state=0):
+    def as_testable(self, test_size=0.25):
         x_train, x_test, y_train, y_test = train_test_split(
             self.x,
-            self.y,
-            test_size=test_size,
-            random_state=random_state
+            self.y
         )
 
         return TestableKeelData(self.file_name, self.size, self.features, self.classes, test_size, x_train, x_test,

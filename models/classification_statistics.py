@@ -24,5 +24,5 @@ class ClassificationStatistics:
         print('==> F1: %s' % self.f1)
         print('==> Recall: %s' % self.recall)
 
-    def plot_confusion_matrix(self):
-        self.plotter.plot_confusion_matrix(self.confusion_matrix, self.labels)
+    def plot_confusion_matrix(self, filename):
+        self.plotter.plot_confusion_matrix(self.confusion_matrix, self.labels, filename)
