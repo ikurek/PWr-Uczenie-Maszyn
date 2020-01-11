@@ -32,5 +32,5 @@ class TestableKeelData:
         print('==> Train Size: %s' % len(self.x_train))
         print('==> Test Size: %s' % len(self.x_test))
 
-    def plot_train_class_distribution(self, filename=""):
+    def plot_train_class_distribution(self, filename=''):
         self.plotter.plot_2d_space(self.x_train, self.y_train, title="Train set class distribution", filename=filename)

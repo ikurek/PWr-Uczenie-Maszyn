@@ -21,7 +21,7 @@ class KeelData:
         print('==> Features: %s' % self.features)
         print('==> Classes: %s' % self.classes)
 
-    def plot_class_distribution(self, filename):
+    def plot_class_distribution(self, filename=''):
         self.plotter.plot_2d_space(self.x, self.y, title="Dataset class distribution", filename=filename)
 
     def as_testable(self, test_size=0.25):
