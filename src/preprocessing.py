@@ -30,12 +30,12 @@ class CommonPreprocessing:
         result = self.__base_preprocessing(keel_dataset, sampler)
         return result
 
-    def smote_over_sampling(self, keel_dataset):
-        sampler = SMOTE()
+    def smote_over_sampling(self, keel_dataset, k_neighbors):
+        sampler = SMOTE(k_neighbors=k_neighbors)
         result = self.__base_preprocessing(keel_dataset, sampler)
         return result
 
-    def adasyn_over_sampling(self, keel_dataset):
-        sampler = ADASYN()
+    def adasyn_over_sampling(self, keel_dataset, n_neighbors):
+        sampler = ADASYN(n_neighbors=n_neighbors)
         result = self.__base_preprocessing(keel_dataset, sampler)
         return result
