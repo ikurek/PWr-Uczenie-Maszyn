@@ -30,7 +30,9 @@ class KeelData:
     def as_testable(self, test_size=0.25):
         x_train, x_test, y_train, y_test = train_test_split(
             self.x,
-            self.y
+            self.y,
+            stratify=self.y,
+            shuffle=True
         )
 
         return TestableKeelData(self.file_name, self.size, self.features, self.classes, test_size, x_train, x_test,
