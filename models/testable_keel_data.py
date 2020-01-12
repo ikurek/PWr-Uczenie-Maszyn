@@ -1,3 +1,4 @@
+import src.imbalance_ratio as ir
 from src.plot import Plotter
 
 
@@ -12,6 +13,8 @@ class TestableKeelData:
         self.x_test = x_test
         self.y_train = y_train
         self.y_test = y_test
+        self.train_imbalance_ratio = ir.get_imbalance_ratio(y_train)
+        self.test_imbalance_ratio = ir.get_imbalance_ratio(y_test)
         self.plotter = Plotter(classes)
 
     def update_with_datasets(self, x_train, x_test, y_train, y_test):
@@ -21,6 +24,8 @@ class TestableKeelData:
         self.y_test = y_test
         self.size = len(x_train) + len(x_test)
         self.test_train_split_ratio = len(x_test) / len(x_train)
+        self.train_imbalance_ratio = ir.get_imbalance_ratio(y_train)
+        self.test_imbalance_ratio = ir.get_imbalance_ratio(y_test)
 
     def print_info(self):
         print('Keel Testable Dataset Info:')
@@ -30,7 +35,9 @@ class TestableKeelData:
         print('==> Classes: %s' % self.classes)
         print('==> Test-Train Split Ratio: %s' % self.test_train_split_ratio)
         print('==> Train Size: %s' % len(self.x_train))
+        print('==> Train Imbalance Ratio: %s' % self.train_imbalance_ratio)
         print('==> Test Size: %s' % len(self.x_test))
+        print('==> Test Imbalance Ratio: %s' % self.test_imbalance_ratio)
 
     def plot_train_class_distribution(self, filename=''):
         self.plotter.plot_2d_space(self.x_train, self.y_train, title="Train set class distribution", filename=filename)

@@ -1,5 +1,6 @@
 from sklearn.model_selection import train_test_split
 
+import src.imbalance_ratio as ir
 from models.testable_keel_data import TestableKeelData
 from src.plot import Plotter
 
@@ -12,6 +13,7 @@ class KeelData:
         self.classes = classes
         self.x = x
         self.y = y
+        self.imbalance_ratio = ir.get_imbalance_ratio(y)
         self.plotter = Plotter(classes)
 
     def print_info(self):
@@ -20,6 +22,7 @@ class KeelData:
         print('==> Size: %s' % self.size)
         print('==> Features: %s' % self.features)
         print('==> Classes: %s' % self.classes)
+        print('==> Imbalance Ratio: %s' % self.imbalance_ratio)
 
     def plot_class_distribution(self, filename=''):
         self.plotter.plot_2d_space(self.x, self.y, title="Dataset class distribution", filename=filename)
