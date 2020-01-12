@@ -3,7 +3,7 @@ from src.preprocessing import CommonPreprocessing
 from src.read_data import DataReader
 
 ADASYN_K_NEIGHBOURS = 5
-DATA_DIR = "../data"
+DATA_DIR = "../adasyn_data"
 
 data_reader = DataReader(DATA_DIR)
 common_classifier = CommonClassification()
